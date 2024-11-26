@@ -18,16 +18,16 @@
         <div class="registerInfo">
             <form>
                 <label for="firstname">First Name</label>
-                <input type="text" name="firstname">
+                <input type="text" name="firstname" id="firstname">
                 <br>
                 <label for="surname">Surname</label>
-                <input type="text" name="surname">
+                <input type="text" name="surname" id="surname">
                 <br>
                 <label for="DOB">Date Of Birth</label>
-                <input type="date" name="DOB">
+                <input type="date" name="DOB" id="DOB">
                 <br>
                 <label for="region">Region</label>
-                <select name="region">
+                <select name="region" id="region">
                     <option>Africa</option>
                     <option>North America</option>
                     <option>South America</option>
@@ -37,17 +37,19 @@
                 </select>
                 <br>
                 <label for="email">Email</label>
-                <input type="email" name="email">
+                <input type="email" name="email" id="email">
                 <br>
                 <label for="password">Password</label>
-                <input type="password" name="password">  
+                <input type="password" name="password" id="password">  
                 <br>
                 <label for="confirmpassword">Confirm Password</label>
-                <input type="password" name="confirmpassword">
+                <input type="password" name="confirmpassword" id="confirmpassword">
                 <br>
-                <button>Register</button>
+                <button id="register">Register</button>
             </form>
         </div>
         <a href="../login/login.html">Back to Login</a>
+        <script src="register.js"></script>
     </body>
+
 </html>
