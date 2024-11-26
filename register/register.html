@@ -1,10 +1,53 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head>        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <!--These are just fonts-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="register.css">
         <title>Register</title>
     </head>
 
     <body>
-        Register
+        <h1>
+            Register
+        </h1>
+
+        <div class="registerInfo">
+            <form>
+                <label for="firstname">First Name</label>
+                <input type="text" name="firstname">
+                <br>
+                <label for="surname">Surname</label>
+                <input type="text" name="surname">
+                <br>
+                <label for="DOB">Date Of Birth</label>
+                <input type="date" name="DOB">
+                <br>
+                <label for="region">Region</label>
+                <select name="region">
+                    <option>Africa</option>
+                    <option>North America</option>
+                    <option>South America</option>
+                    <option>Europe</option>
+                    <option>Asia</option>
+                    <option>Australia</option>
+                </select>
+                <br>
+                <label for="email">Email</label>
+                <input type="email" name="email">
+                <br>
+                <label for="password">Password</label>
+                <input type="password" name="password">  
+                <br>
+                <label for="confirmpassword">Confirm Password</label>
+                <input type="password" name="confirmpassword">
+                <br>
+                <button>Register</button>
+            </form>
+        </div>
+        <a href="../login/login.html">Back to Login</a>
     </body>
 </html>

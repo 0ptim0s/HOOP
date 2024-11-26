@@ -1,0 +1,43 @@
+body{
+    background: radial-gradient(circle,rgb(175, 175, 175) 5%,rgb(66, 65, 65) 40%,black 100%);
+    font-family: "poppins-regular",sans-serif;
+    font-size: x-large;
+}
+
+form{
+    color: white;
+    padding: auto;
+}
+
+.registerInfo{  
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    padding: 35px;
+    background-color: rgb(51, 51, 51);
+    border-radius: 5px;
+}
+
+h1{
+    color: rgb(101, 245, 173);
+    position: absolute;
+    left: 39%;
+    /*text-align: center;*/
+    top: 10%;
+    font-size: 590%;
+    animation-name: NameAppear;
+    animation-duration: 4.5s;
+}
+
+a{
+    color: white;
+    font-size: xx-large;
+    font-style: bold;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+a:hover{
+    color: rgb(64, 184, 124);
+}
