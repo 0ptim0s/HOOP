@@ -76,6 +76,19 @@ label{
     border-radius: 5px;
 }
 
+button{
+    color: Black;
+    font-style: Bold;
+    font-size: larger;
+    box-shadow: 2% white;
+    border-radius: 14%;
+}
+button:hover{
+    background-color: rgb(64, 184, 124);
+    border-color: white;
+    color: white;
+    box-shadow: 4% white;
+}
 
 @keyframes logoLeftPole{
     0%{
