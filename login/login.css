@@ -1,0 +1,88 @@
+h1{
+    color: rgb(101, 245, 173);
+    position: absolute;
+    left: 44%;
+    /*text-align: center;*/
+    top: 40%;
+    font-size: 690%;
+    animation-name: NameAppear;
+    animation-duration: 2.5s;
+}
+
+
+body{
+    background: radial-gradient(circle,rgb(175, 175, 175) 5%,rgb(66, 65, 65) 40%,black 100%);
+}
+
+#leftPole{
+    float: left;
+    top: 7%;
+    left: 43%;
+    width: 3%;
+    height: 40vh;
+    background: rgb(101, 245, 173);
+    border-radius: 4%;
+    position: absolute;
+    animation-name: logoLeftPole;
+    animation-duration: 2.5s;
+}
+
+#rightPole{
+    float: left;
+    left: 58%;
+    top: 7%;
+    width: 3%;
+    height: 40vh;
+    background: rgb(101, 245, 173);
+    border-radius: 4%;
+    position: absolute;
+    animation-name: logoRightPole;
+    animation-duration: 2.5s;
+}
+
+#bridge{
+    float: left;
+    left: 43%;
+    top: 22%;
+    width: 17vw;
+    height: 7%;
+    background:rgb(101, 245, 173);
+    position: absolute;
+    animation-name: logoBridge;
+    animation-duration: 2.5s;
+}
+
+@keyframes logoLeftPole{
+    0%{
+        left:-10%;
+    }
+
+    100%{
+        left:43%;
+    }
+}
+
+@keyframes logoRightPole{
+    0%{
+        left:100%;
+    }
+
+    100%{
+        left:58%;
+    }
+}
+
+@keyframes logoBridge{
+    0%{
+        top:-10%;
+    }
+
+    100%{
+        top:22%;
+    }
+}
+
+@keyframes NameAppear {
+    from{opacity: 0%;}
+    to{opacity: 100%;}
+}
