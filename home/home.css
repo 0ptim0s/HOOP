@@ -1,0 +1,30 @@
+body{
+    background: radial-gradient(circle,rgb(175, 175, 175) 5%,rgb(66, 65, 65) 40%,black 100%);
+    font-family: "poppins-regular",sans-serif;
+    font-size: x-large;
+}
+
+h2{
+    color: rgb(101, 245, 173);
+}
+
+h2:hover{
+    cursor: pointer;
+}
+
+.NaviBar{
+    color: white;
+}
+
+.movie-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.movie-tile{
+    width: 25%;
+    height: 50%;
+    border: 2px solid white;
+    padding: 3%;
+}
