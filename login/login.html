@@ -23,17 +23,20 @@
             <form>
           
                 <label for="email">Email </label>    
-                <input type="email" name="email" class="UserInput">
+                <input type="email" name="email" class="UserInput" id="email">
                 <br>
                 <label for="password">Password </label>
-                <input type="password" name="password" class="UserInput">
+                <input type="password" name="password" class="UserInput" id="password">
                 <br>
-                <button>Login</button>
+                <button id="loginButton">Login</button>
 
             </form>
         </div>
 
-            <label id="registerLabel">Register</label>
+           
+                <label id="invalidInput"></label>
+                <label id="registerLabel">Register</label>
+    
             <script src="login.js"></script>
     </body>
 </html>

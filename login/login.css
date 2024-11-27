@@ -110,6 +110,13 @@ button:hover{
     cursor: pointer;
 }
 
+#invalidInput{
+    position: absolute;
+    bottom: 8%;
+    left: 52%;
+    color: red;
+}
+
 @keyframes logoLeftPole{
     0%{
         left:-10%;
