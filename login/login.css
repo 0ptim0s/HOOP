@@ -78,6 +78,8 @@ label{
     padding: 35px;
     background-color: rgb(51, 51, 51);
     border-radius: 5px;
+    animation-name: moveUp;
+    animation-duration: 1.5s;
 }
 
 button{
@@ -150,4 +152,9 @@ button:hover{
 @keyframes NameAppear {
     from{opacity: 0%;}
     to{opacity: 100%;}
+}
+
+@keyframes moveUp {
+    from{top: 100%;}
+    to{top: 65%;}
 }

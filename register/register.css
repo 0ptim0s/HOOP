@@ -16,6 +16,8 @@ form{
     padding: 35px;
     background-color: rgb(51, 51, 51);
     border-radius: 5px;
+    animation-name: moveUp;
+    animation-duration: 1.5s;
 }
 
 h1{
@@ -26,7 +28,7 @@ h1{
     top: 10%;
     font-size: 590%;
     animation-name: NameAppear;
-    animation-duration: 4.5s;
+    animation-duration: 1.5s;
 }
 
 #BackToLogin{
@@ -41,4 +43,14 @@ h1{
 #BackToLogin:hover{
     color: rgb(64, 184, 124);
     cursor: pointer;
+}
+
+@keyframes NameAppear {
+    from{opacity: 0%;top: -15%}
+    to{opacity: 100%;top: 10%;}
+}
+
+@keyframes moveUp {
+    from{top: 100%;}
+    to{top: 50%;}
 }
