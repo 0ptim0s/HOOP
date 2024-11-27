@@ -11,8 +11,10 @@ h1{
 
 
 body{
-    background: radial-gradient(circle,rgb(175, 175, 175) 5%,rgb(66, 65, 65) 40%,black 100%);
-    font-family: poppins-regular;
+    /*background: radial-gradient(circle,rgb(175, 175, 175) 5%,rgb(66, 65, 65) 40%,black 100%);*/
+    background-image: url("../images/movie-poster-background.jpg");
+    background-size: 100%;
+    font-family: "poppins-regular", sans-serif;
 }
 
 #leftPole{
@@ -94,7 +96,7 @@ button:hover{
     box-shadow: 4% white;
 }
 
-a{
+#registerLabel{
     color: white;
     font-size: xx-large;
     font-style: bold;
@@ -103,8 +105,9 @@ a{
     right: 5%;
 }
 
-a:hover{
+#registerLabel:hover{
     color: rgb(64, 184, 124);
+    cursor: pointer;
 }
 
 @keyframes logoLeftPole{

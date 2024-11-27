@@ -29,7 +29,7 @@ h1{
     animation-duration: 4.5s;
 }
 
-a{
+#BackToLogin{
     color: white;
     font-size: xx-large;
     font-style: bold;
@@ -38,6 +38,7 @@ a{
     right: 5%;
 }
 
-a:hover{
+#BackToLogin:hover{
     color: rgb(64, 184, 124);
+    cursor: pointer;
 }

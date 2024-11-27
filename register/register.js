@@ -28,3 +28,7 @@ function calculateAge(dob){
     var y1 = d1.substr(0, 4);
     return year - y1;
 }
+
+document.getElementById("BackToLogin").addEventListener("click",()=>{
+    window.location.href = "../login/login.html";
+});
