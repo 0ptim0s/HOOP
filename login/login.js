@@ -14,5 +14,8 @@ document.getElementById("loginButton").addEventListener("click",()=>{
         document.getElementById("invalidInput").innerText = "Invalid Password";
     }
 
+
+    /**for now */
+    window.location.href = "../home/home.html";
     /**Ajax goes here */
 });
