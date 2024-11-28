@@ -2,6 +2,7 @@ body{
     background: radial-gradient(circle,rgb(175, 175, 175) 5%,rgb(66, 65, 65) 40%,black 100%);
     font-family: "poppins-regular",sans-serif;
     font-size: x-large;
+    background-position: static;
 }
 
 h2{
@@ -20,11 +21,48 @@ h2:hover{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 15px;
 }
 
 .movie-tile{
     width: 25%;
     height: 50%;
     border: 2px solid white;
-    padding: 3%;
+    text-align: center;
+    color: white;
+    margin: 2vw;
+    border-radius: 1%;
+}
+
+.movie-tile:hover{
+    width: 26%;
+    height: 51%;
+}
+
+.poster{
+    height: 75%;
+    width: 70%;
+    padding: 1%;
+}
+
+
+.movie-title{
+    font-size: xx-large;
+    padding: 2%;
+}
+
+.favourites{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: 0%;
+}
+
+#FavouritesBtn{
+    position: relative;
+    width: 15%;
+    height: 15%;
+    border-radius: 50%;
+    border: 0%;
+    margin: 2%;
 }
