@@ -13,12 +13,14 @@
     <body>
         <navbar class="NaviBar" id="navbar">
             <h2 id="slogan">HOOP</h2>
-            <label id="HomeLink">Home</label>
-            <label id="NewLink">New</label>
-            <label id="RecommendedLink">Recommended</label>
-            <label id="FavouritesLink">Favourites</label>
-            <label id="SettingsLink">Settings</label>
-            <label id="logout">Logout</label>
+            <ul>
+            <li id="HomeLink"><a href="../home/home.html">Home</a></li>
+            <li id="NewLink"><a href="../new/new.html">New</a></li>
+            <li id="RecommendedLink"><a href="../recommended/recommended.html">Recommended</a></li>
+            <li id="FavouritesLink"><a href="../favourties/favourites.html">Favourites</a></li>
+            <li id="SettingsLink"><a href="../settings/settings.html">Settings</a></li>
+            <li id="logout"><a href="../login/login.html">Logout</a></li>
+            </ul>
         </navbar>
 
         <div class="movie-container">
@@ -29,7 +31,7 @@
                 <br>
                 <label>Rating: 5/5</label>
                 <br>
-                <button id="FavouritesBtn"><img src="../images/Star.png" class="favourites"></button>
+                <button class="FavouritesBtn">Add To Favourites</button>
             </div>
             <div class="movie-tile">Movie2</div>
             <div class="movie-tile">Movie3</div>

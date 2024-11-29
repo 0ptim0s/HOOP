@@ -15,6 +15,36 @@ h2:hover{
 
 .NaviBar{
     color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    top: 0;
+}
+
+ul{
+    list-style-type: none;
+    overflow: hidden;
+    float: left;
+}
+
+li{
+    float: left;
+}
+
+li a{
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px;
+}
+
+li a:hover:not(.active){
+    color:  rgb(101, 245, 173);
+}
+
+.active{
+    color:  rgb(101, 245, 173);
 }
 
 .movie-container{
@@ -27,7 +57,7 @@ h2:hover{
 .movie-tile{
     width: 25%;
     height: 50%;
-    border: 2px solid white;
+    /*border: 2px solid white;*/
     text-align: center;
     color: white;
     margin: 2vw;
@@ -35,8 +65,7 @@ h2:hover{
 }
 
 .movie-tile:hover{
-    width: 26%;
-    height: 51%;
+    border :0px;
 }
 
 .poster{
@@ -45,6 +74,10 @@ h2:hover{
     padding: 1%;
 }
 
+.poster:hover{
+    opacity: 50%;
+    cursor: pointer;
+}
 
 .movie-title{
     font-size: xx-large;
@@ -58,11 +91,20 @@ h2:hover{
     border: 0%;
 }
 
-#FavouritesBtn{
+.FavouritesBtn{
     position: relative;
-    width: 15%;
-    height: 15%;
-    border-radius: 50%;
-    border: 0%;
+    width: 65%;
+    height: 45%;
+    border-radius: 4px;
+    border: 1px solid white;
     margin: 2%;
+    background-color: black;
+    color: white;
 }
+
+.FavouritesBtn:hover{
+    background-color: rgb(101, 245, 173);
+    color: black;
+    border: 1px solid  rgb(101, 245, 173);;
+}
+
