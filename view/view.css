@@ -1,0 +1,63 @@
+body{
+    /*background: radial-gradient(circle,rgb(175, 175, 175) 5%,rgb(66, 65, 65) 40%,black 100%);*/
+    background-image: url("../images/movie-poster-background.jpg");
+    background-size: 100%;
+    font-family: "poppins-regular", sans-serif;
+    font-size: x-large;
+}
+
+h2{
+    color: rgb(101, 245, 173);
+}
+
+h2:hover{
+    cursor: pointer;
+}
+
+.NaviBar{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    top: 0;
+}
+
+ul{
+    list-style-type: none;
+    overflow: hidden;
+    float: left;
+}
+
+li{
+    float: left;
+}
+
+li a{
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px;
+}
+
+li a:hover{
+    color:  rgb(101, 245, 173);
+}
+
+.view-box{
+    background-color: rgb(48, 48, 48);
+    position: relative;
+    top: 10vh;
+    left: 20vw;
+    color: white;
+    width: 120vh;
+    height: 30vw;
+}
+
+.review-box{
+    background-color: rgb(153, 153, 153);
+}
+
+.description{
+    color: white;
+}

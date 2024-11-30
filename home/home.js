@@ -25,3 +25,8 @@ document.getElementById("SettingsLink").addEventListener("click",()=>{
 document.getElementById("logout").addEventListener("click",()=>{
     window.location.href = "../login/login.html";
 });
+
+
+function viewpage(){
+    window.location.href = "../view/view.html";
+}
