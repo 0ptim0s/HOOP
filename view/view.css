@@ -1,7 +1,8 @@
 body{
     /*background: radial-gradient(circle,rgb(175, 175, 175) 5%,rgb(66, 65, 65) 40%,black 100%);*/
     background-image: url("../images/movie-poster-background.jpg");
-    background-size: 100%;
+    background-size: cover;
+    background-attachment: fixed;
     font-family: "poppins-regular", sans-serif;
     font-size: x-large;
 }
@@ -44,20 +45,88 @@ li a:hover{
     color:  rgb(101, 245, 173);
 }
 
-.view-box{
-    background-color: rgb(48, 48, 48);
-    position: relative;
-    top: 10vh;
-    left: 20vw;
-    color: white;
-    width: 120vh;
-    height: 30vw;
+.view-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.review-box{
-    background-color: rgb(153, 153, 153);
+.view-box{
+    background-color: rgb(27, 27, 27);
+    color: white;
+    width: 75%;
+    margin: 1%;
+    display: flex;
+    align-items: center;
 }
 
 .description{
     color: white;
+}
+
+.text-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.review-box{
+    background-color: rgb(27, 27, 27);
+    color: white;
+    width: 75%;
+    margin: 1%;
+}
+
+
+.view-poster{
+    margin: 2%;
+    width: 25%;
+}
+
+h3{
+    margin: 2%;
+}
+
+.review-input{
+    align-self: center;
+    margin: 2%;
+    color: white;
+    background-color: black;
+    width: 95%;
+    height: 5vh;
+    border: 1px solid white;
+}
+
+.post-button{
+    float: right;
+    border: 1px solid white;
+    margin: 2%;
+    background-color: black;
+    color: white;
+    width: 10vw;
+    height: 2vw;
+}
+
+.post-button:hover{
+    cursor: pointer;
+    background-color: rgb(101, 245, 173);
+    color: black;
+    border: 1px solid  rgb(101, 245, 173);
+}
+
+.rating-input{
+    align-self: center;
+    margin: 2%;
+    color: white;
+    background-color: black;
+    width: 14%;
+    height: 2vw;
+    border: 1px solid white;
+}
+#errorLbl{
+    color: red;
+}
+
+.error{
+    color: red;
+    visibility: visible;
 }

@@ -2,7 +2,8 @@ body{
     background: radial-gradient(circle,rgb(175, 175, 175) 5%,rgb(66, 65, 65) 40%,black 100%);
     font-family: "poppins-regular",sans-serif;
     font-size: x-large;
-    background-position: static;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 h2{
@@ -123,5 +124,6 @@ li a:hover:not(.active){
     background-color: rgb(101, 245, 173);
     color: black;
     border: 1px solid  rgb(101, 245, 173);
+    cursor: pointer;
 }
 

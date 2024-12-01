@@ -23,20 +23,33 @@
             </ul>
         </navbar>
 
-        <div class="view-box">
-            <img src="../images/Transformers-_Rise_of_the_Beasts.jpg">
+        <div class="view-container">
+            <div class="view-box">
+                <img src="../images/Transformers-_Rise_of_the_Beasts.jpg" class="view-poster">
+                <div class="text-container">
+                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, officia molestiae rerum explicabo, nesciunt maiores veniam debitis nam error aut quidem dicta nobis laboriosam cum, quod voluptates labore quibusdam ipsum.</p>
+                <label>Director: </label>
+                <label>Cast: </label>
+                <label>Release: </label>
+                <label>Rating: 5/5</label>
+                </div>
+            </div>
 
-            <p class="description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elq
-            </p>
-            <label>Date released</label>
-            <label>Director</label>
-            <label>Cast</label>
-            <label>Rating: 5/5</label>
+         <div class="review-box">
+            <h3>Review</h3>
+            <input type="text" placeholder="Enter review here" class="review-input" id="reviewInput">
+            <input type="number" min="0" max="5" class="rating-input" placeholder="Enter rating" id="ratingInput">
+            <label id="errorLbl"></label>
+            <button class="post-button" id="postBtn">Post</button>
+         </div>
+
+         <div class="review-box text-container">
+            <label>Reviewer name</label>
+            <label>Date: </label>
+            <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam itaque esse facilis expedita ipsam, quas incidunt. Magni quod beatae odit ipsum consequatur minima veritatis, aut ducimus neque totam omnis excepturi?</p>
+         </div>
         </div>
 
-        <div class="review-box">
-            Leave review here
-        </div>
+        <script src="view.js"></script>
     </body>
 </html>

@@ -13,7 +13,8 @@ h1{
 body{
     /*background: radial-gradient(circle,rgb(175, 175, 175) 5%,rgb(66, 65, 65) 40%,black 100%);*/
     background-image: url("../images/movie-poster-background.jpg");
-    background-size: 100%;
+    background-size: cover;
+    background-attachment: fixed;
     font-family: "poppins-regular", sans-serif;
 }
 
