@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <!--These are just fonts-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="favourites.css">
+        <title>Favourites</title>
+    </head>
+
+    <body>
+        <navbar class="NaviBar" id="navbar">
+            <h2 id="slogan">HOOP</h2>
+            <ul>
+            <li id="HomeLink"><a href="../home/home.html">Home</a></li>
+            <li id="NewLink"><a href="../new/new.html">New</a></li>
+            <li id="FavouritesLink"><a href="../favourites/favourites.html">Favourites</a></li>
+            <li id="SettingsLink"><a href="../settings/settings.html">Settings</a></li>
+            <li id="logout"><a href="../login/login.html">Logout</a></li>
+            </ul>
+        </navbar>
+
+        <div class="movie-container">
+
+            <div class="movie-tile">
+                <label class="movie-title">Movie1</label>
+          
+                <div class="poster-container">
+                <img src="../images/Transformers-_Rise_of_the_Beasts.jpg" class="poster" onclick="viewpage()">
+                <div class="viewLbl">View</div>
+                </div>
+                <label>Action, Adventure, Comedy</label>
+                <label>Rating: 5/5</label>
+          
+                <button class="FavouritesBtn">Remove from Favourites</button>
+            </div>
+
+        </div>
+
+    </body>
+    <script src="favourites.js"></script>
+</html>

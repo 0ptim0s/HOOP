@@ -15,7 +15,6 @@ document.getElementById("loginButton").addEventListener("click",()=>{
     }
 
 
-    /**for now */
     window.location.href = "../home/home.html";
-    /**Ajax goes here */
+    alert("Welcome ____!");
 });

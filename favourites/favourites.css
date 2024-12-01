@@ -1,0 +1,137 @@
+body{
+    background: radial-gradient(circle,rgb(175, 175, 175) 5%,rgb(66, 65, 65) 40%,black 100%);
+    font-family: "poppins-regular",sans-serif;
+    font-size: x-large;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h2{
+    color: rgb(101, 245, 173);
+}
+
+h2:hover{
+    cursor: pointer;
+}
+
+.NaviBar{
+    font-size: x-large;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    top: 0;
+}
+
+ul{
+    list-style-type: none;
+    overflow: hidden;
+    float: left;
+}
+
+li{
+    float: left;
+}
+
+li a{
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px;
+}
+
+li a:hover:not(.active){
+    color:  rgb(101, 245, 173);
+}
+
+.active{
+    color:  rgb(101, 245, 173);
+}
+
+
+.NaviBar input[type=search]{
+    margin: 2%;
+    width: 20vw;
+    height: 3vh;
+}
+
+.movie-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px;
+}
+
+.movie-tile{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 50%;
+    align-items: center;
+    color: white;
+    margin: 2vw;
+    border-radius: 1%;
+}
+
+.movie-tile:hover{
+    border :0px;
+}
+
+.poster-container{
+    position: relative;
+    text-align: center;
+}
+
+.poster-container:hover{
+    visibility: visible;
+}
+
+.viewLbl{
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    visibility: hidden;
+}
+
+.poster{
+    height: 75%;
+    width: 70%;
+    padding: 1%;
+}
+
+.poster:hover{
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.movie-title{
+    font-size: xx-large;
+    padding: 2%;
+}
+
+.favourites{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: 0%;
+}
+
+.FavouritesBtn{
+    position: relative;
+    width: 75%;
+    height: 2rem;
+    border-radius: 4px;
+    border: 1px solid white;
+    margin: 2%;
+    background-color: black;
+    color: white;
+}
+
+.FavouritesBtn:hover{
+    background-color: rgb(101, 245, 173);
+    color: black;
+    border: 1px solid  rgb(101, 245, 173);
+    cursor: pointer;
+}
+
