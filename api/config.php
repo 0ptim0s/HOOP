@@ -12,7 +12,7 @@
 
         private function __construct(){
             $servername = "localhost";
-            $username = "root";
+            $username = "root@localhost";
             $password = "password";
 
             $this->conn = new mysqli($servername, $username, $password);
@@ -22,6 +22,10 @@
             }else{
                 $this->conn->select_db("HOOP");
             }
+        }
+
+        public function prepare($q){
+            return $this->conn->prepare($q);
         }
 
         public function __destruct(){
