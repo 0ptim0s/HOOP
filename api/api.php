@@ -179,8 +179,41 @@
         }//searchUser
 
         public function DeleteUser($name, $surname, $email){
-            $Query = "";
+            //need to put admin validation
+
+            if(!isset($name) && !isset($surname) && !isset($email)){
+                $this->BadReq();
+            }//BadRequest
+
+            $Query = "DELETE FROM User WHERE name = ? OR surname = ? OR email = ?";
+            $SQLQuery = $this->db->prepare($Query);
+            if($SQLQuery){
+                $SQLQuery->bind_param("sss",$name,$surname, $email);
+                $didit = $SQLQuery->execute();
+                if($didit){
+                    $data = ["status"=> "200","data"=> "Successfully deleted " . $name . " " . $surname];
+                    header("HTTP/1.1 200 OK");
+                    echo json_encode($data);
+                }else{$this->SQLEXECUTEEROR();}
+            }else{$this->SQLERROR();}
         }//Delete User
+
+        public function UpdateUser($field, $value, $USER_ID){
+            if((!isset($fields) && !isset($values)) || !isset($USER_ID)){
+                $this->BadReq();
+            }
+
+            $Query = "UPDATE USER SET ". $field . " = ? WHERE User_ID = ?";
+            $SQLQuery = $this->db->prepare($Query);
+            if($SQLQuery){
+                $SQLQuery->bind_param("ss",$value,$USER_ID);
+                $didit = $SQLQuery->execute();
+                if($didit){
+                    header("HTTP/1.1 200 OK");
+                    $data = ["status"=> "200","data"=> "Upated ". $field . " to " . $value];
+                }else{$this->SQLEXECUTEEROR();}
+            }else{$this->SQLERROR();}
+        }//update user
 
 
 
