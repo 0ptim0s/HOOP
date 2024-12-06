@@ -1,8 +1,8 @@
 <?php
     include_once "config.php";
     session_start();
-    error_reporting(E_ALL); //reports all errors
-    header("Access-Control=Allow-Method: POST");
+    error_reporting(0); //reports all errors
+    header("Access-Control-Allow-Method: POST");
     header("Content-Type: application/json; charset=utf-8");
 
     class API{
@@ -79,13 +79,13 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public function Login($email, $password){
 
-            if(!isset($email) || !isset($password) || !$this->isValidPassword($password)){
+            if(!isset($email) || !isset($password) /* || !$this->isValidPassword($password) */){
                 $this->BadReq();
             }//input validation
 
             if(!$this->alreadyExists($email, $password)){
                 header("HTTP/1.1 200 OK");
-                $data = ["status"=>"200", "message"=>"Register Now!"];
+                $data = ["status"=>"200", "message"=>"You dont have an account register now"];
                 echo json_encode($data);
             }//needs to register
 
@@ -123,12 +123,12 @@
         public function Register($name, $surname, $email, $password, $DOB){
             $hashedPassword = $this->Hashing($password);
 
-            if(!$this->isValidPassword($password)){
+            /* if(!$this->isValidPassword($password)){
                 header("HTTP/1.1 400 Invalid Password");
                 $data = ["status"=>"400","message"=>"Password is invalid"];
                 echo json_encode($data);
                 die();
-            }
+            } */
 
             if(!isset($name) || !isset($surname) || !isset($email) || !isset($DOB) || !isset($password)){
                 $this->BadReq();
@@ -211,6 +211,7 @@
                 if($didit){
                     header("HTTP/1.1 200 OK");
                     $data = ["status"=> "200","data"=> "Upated ". $field . " to " . $value];
+                    echo json_encode($data);
                 }else{$this->SQLEXECUTEEROR();}
             }else{$this->SQLERROR();}
         }//update user
