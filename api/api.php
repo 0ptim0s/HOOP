@@ -75,6 +75,19 @@
             echo json_encode($data);
         }
 
+        public function alreadyExistsDelete($name,$surname,$email){
+            $Query = "SELECT * FROM USER WHERE name = ? AND surname = ? AND email = ?";
+            $SQLQuery = $this->db->prepare($Query);
+            if($SQLQuery){
+                $SQLQuery->bind_param("sss",$name,$surname,$email);
+                $didit = $SQLQuery->execute();
+                if($didit){
+                    $res = $SQLQuery->get_result();
+                    return ($res->num_rows > 0) ? true : false;
+                }else{$this->SQLERROR();}
+            }else{$this->SQLERROR();}
+        }
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public function Login($email, $password){
 
@@ -187,7 +200,7 @@
             if(!isset($name) || !isset($surname) || !isset($email)){
                 $this->BadReq();
             }//BadRequest
-
+            if($this->alreadyExistsDelete($name,$surname,$email)){
             $Query = "DELETE FROM USER WHERE name = ? AND surname = ? AND email = ?";
             $SQLQuery = $this->db->prepare($Query);
             if($SQLQuery){
@@ -195,31 +208,55 @@
                 $didit = $SQLQuery->execute();
                 if($didit){
                     $res = $SQLQuery->get_result();
-                    echo($res);
                         $data = ["status"=> "200","data"=> "Successfully deleted " . $name . " " . $surname];
                         header("HTTP/1.1 200 OK");
                         echo json_encode($data);
                 }else{$this->SQLEXECUTEEROR();}
             }else{$this->SQLERROR();}
+        }//userExists
+        else{
+            $this->NoResFound();
+        }
         }//Delete User
 
         public function UpdateUser($field, $value, $USER_ID){
-            if((!isset($fields) && !isset($values)) || !isset($USER_ID)){
+            if((!isset($field) && !isset($value)) || !isset($USER_ID)){
                 $this->BadReq();
             }
 
             $Query = "UPDATE USER SET ". $field . " = ? WHERE User_ID = ?";
             $SQLQuery = $this->db->prepare($Query);
             if($SQLQuery){
-                $SQLQuery->bind_param("ss",$value,$USER_ID);
+                $SQLQuery->bind_param("sd",$value,$USER_ID);
                 $didit = $SQLQuery->execute();
                 if($didit){
                     header("HTTP/1.1 200 OK");
-                    $data = ["status"=> "200","data"=> "Upated ". $field . " to " . $value];
+                    $data = ["status"=> "200","data"=> "Updated ". $field . " to " . $value];
                     echo json_encode($data);
                 }else{$this->SQLEXECUTEEROR();}
             }else{$this->SQLERROR();}
         }//update user
+        ///////////////////////////////////////////////////////////////////////////////////
+
+
+        public function getMedia(){
+            $randNum = 2;//rand(25,75);
+            $Query = "SELECT * FROM MEDIA";
+            $SQLQuery = $this->db->prepare($Query);
+            if($SQLQuery){
+                //$SQLQuery->bind_param();
+                $didit = $SQLQuery->execute();
+                if($didit){
+                    $res = $SQLQuery->get_result();
+                    while($row = $res->fetch_assoc()){
+                        $media[] = $row;
+                    }
+                    $data = ["status"=> "200","data"=> $media];
+                    header("HTTP/1.1 200 OK");
+                    echo json_encode($data);
+                }else{$this->SQLEXECUTEEROR();}
+            }else{$this->SQLERROR();}
+        }//getAllMedia
 
 
 
@@ -240,12 +277,22 @@
             $api->Register($input_data["name"],$input_data["surname"],$input_data["email"],$input_data["password"],$input_data["DOB"]);
         }
 
-        if(isset($input_data) && $input_data["type"] == "Search"){
+        if(isset($input_data) && $input_data["type"] == "SearchUser"){
             $api->SearchUser($input_data['name'],$input_data['surname'],$input_data['email']);
         }
 
-        if(isset($input_data) && $input_data["type"] == "Delete"){
+        if(isset($input_data) && $input_data["type"] == "DeleteUser"){
             $api->DeleteUser($input_data['name'],$input_data['surname'],$input_data['email']);
+        }
+
+        if(isset($input_data) && $input_data['type'] == 'UpdateUser'){
+            $api->UpdateUser($input_data['field'],$input_data['value'],$input_data['USER_ID']);
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+
+        if(isset($input_data) && $input_data['type'] == 'GetMedia'){
+            $api->getMedia();
         }
 
     }//different endpoints for POST
