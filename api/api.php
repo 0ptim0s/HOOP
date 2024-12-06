@@ -34,14 +34,14 @@
         }
 
         public function SQLERROR(){
-            header('HTTP/1.1 500 Internal Error');
+            header('HTTP/1.1 500 Internal Server Error');
             $data = ["status"=>"500","message"=> "SQL prepare error", "timestamp"=> time()];
             echo json_encode($data);
             die();
         }
 
         public function SQLEXECUTEEROR(){
-            header("HTTP/1.1 500 Internal Error");
+            header("HTTP/1.1 500 Internal Server Error");
             $data = ["status"=>"500","message"=> "SQL execute error", "timestamp"=> time()];
             echo json_encode($data);
             die();
@@ -56,10 +56,9 @@
 
         public function alreadyExists($email, $password){
             $Query = "SELECT * FROM USER WHERE email = ? AND password = ?";
-            $hashedPassword = $this->Hashing($password);
             $SQLQuery = $this->db->prepare($Query);
             if($SQLQuery){
-            $SQLQuery->bind_param("ss", $email,$hashedPassword);
+            $SQLQuery->bind_param("ss", $email,$password);
             $didit = $SQLQuery->execute();
             if($didit){
                 $res = $SQLQuery->get_result();
@@ -79,28 +78,30 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public function Login($email, $password){
 
-            if(!isset($email) || !isset($password) /* || !$this->isValidPassword($password) */){
+            $hashedPassword = $this->Hashing($password);
+
+            if(!isset($email) || !isset($password)){
                 $this->BadReq();
             }//input validation
 
-            if(!$this->alreadyExists($email, $password)){
-                header("HTTP/1.1 200 OK");
-                $data = ["status"=>"200", "message"=>"You dont have an account register now"];
+            
+
+            if(!$this->alreadyExists($email, $hashedPassword)){
+                header("HTTP/1.1 409 OK");
+                $data = ["status"=>"409", "message"=>"Incorrect details"];
                 echo json_encode($data);
             }//needs to register
-
-            if($this->alreadyExists($email, $password)){
+              else{
             $Query = 'SELECT * FROM USER WHERE email = ? AND password = ? ';
             $SQLQuery = $this->db->prepare($Query);
             if($SQLQuery){
-                $hashedPassword = $this->Hashing($password);
                 $SQLQuery->bind_param('ss', $email, $hashedPassword);
                 $didit = $SQLQuery->execute();
                 if($didit){
                     $res = $SQLQuery->get_result();
                     while($row = $res->fetch_assoc()){
-                        $name = $row['name'];
-                        $surname = $row['surname'];
+                        $name = $row['Name'];
+                        $surname = $row['Surname'];
                         $USER_ID = $row['USER_ID'];
                         $email = $row['email'];
                         $favourites = $row['Favourites'];
@@ -109,39 +110,41 @@
                         $_SESSION['name'] = $name;
                         $_SESSION['surname'] = $surname;
                         $_SESSION['favourites'] = $favourites;
-                        $data = ["status"=>"200","data"=>["email"=>$email, "name"=>$name,""=>$surname,"USER_ID "=>$USER_ID]];
+                        $data = ["status"=>"200","data"=>["email"=>$email, "name"=>$name,"surname"=>$surname,"USER_ID"=>$USER_ID]];
                         header("HTTP/1.1 200 OK");
                         echo json_encode($data);
                     }
                 }else{$this->SQLEXECUTEEROR();}
             }else{
                 $this->SQLERROR();
-            }
+            } 
         }//valid user
         }//login
 
         public function Register($name, $surname, $email, $password, $DOB){
+            //DOB must be yyyy-mm-dd
             $hashedPassword = $this->Hashing($password);
 
-            /* if(!$this->isValidPassword($password)){
+             if(!$this->isValidPassword($password)){
                 header("HTTP/1.1 400 Invalid Password");
                 $data = ["status"=>"400","message"=>"Password is invalid"];
                 echo json_encode($data);
                 die();
-            } */
+            } 
 
             if(!isset($name) || !isset($surname) || !isset($email) || !isset($DOB) || !isset($password)){
                 $this->BadReq();
             }
 
             if($this->alreadyExists($email,$hashedPassword)){
-                header("HTTP/1.1 422 OK");
+                header("HTTP/1.1 422");
                 $data = ["status"=> "422","message"=> "User already exists"];
+                echo json_encode($data);
             }else{
-                $Query = "INSTERT INTO USER (name, surname, email, password, DOB) VALUES (?,?,?,?);";
+                $Query = "INSERT INTO USER (name, surname, email, password, DOB) VALUES (?,?,?,?,?)";
                 $SQLQuery = $this->db->prepare($Query);
                 if($SQLQuery){
-                    $SQLQuery->bind_param("sssss",$name, $surname, $email, $password, $DOB);
+                    $SQLQuery->bind_param("sssss",$name, $surname, $email, $hashedPassword, $DOB);
                     $didit = $SQLQuery->execute();
                     if($didit){
                         $data = ["status"=> "201","message"=> "Succesfully Registered"];
@@ -181,19 +184,21 @@
         public function DeleteUser($name, $surname, $email){
             //need to put admin validation
 
-            if(!isset($name) && !isset($surname) && !isset($email)){
+            if(!isset($name) || !isset($surname) || !isset($email)){
                 $this->BadReq();
             }//BadRequest
 
-            $Query = "DELETE FROM User WHERE name = ? OR surname = ? OR email = ?";
+            $Query = "DELETE FROM USER WHERE name = ? AND surname = ? AND email = ?";
             $SQLQuery = $this->db->prepare($Query);
             if($SQLQuery){
                 $SQLQuery->bind_param("sss",$name,$surname, $email);
                 $didit = $SQLQuery->execute();
                 if($didit){
-                    $data = ["status"=> "200","data"=> "Successfully deleted " . $name . " " . $surname];
-                    header("HTTP/1.1 200 OK");
-                    echo json_encode($data);
+                    $res = $SQLQuery->get_result();
+                    echo($res);
+                        $data = ["status"=> "200","data"=> "Successfully deleted " . $name . " " . $surname];
+                        header("HTTP/1.1 200 OK");
+                        echo json_encode($data);
                 }else{$this->SQLEXECUTEEROR();}
             }else{$this->SQLERROR();}
         }//Delete User
@@ -233,6 +238,14 @@
 
         if(isset($input_data) && $input_data["type"] == "Register"){
             $api->Register($input_data["name"],$input_data["surname"],$input_data["email"],$input_data["password"],$input_data["DOB"]);
+        }
+
+        if(isset($input_data) && $input_data["type"] == "Search"){
+            $api->SearchUser($input_data['name'],$input_data['surname'],$input_data['email']);
+        }
+
+        if(isset($input_data) && $input_data["type"] == "Delete"){
+            $api->DeleteUser($input_data['name'],$input_data['surname'],$input_data['email']);
         }
 
     }//different endpoints for POST
