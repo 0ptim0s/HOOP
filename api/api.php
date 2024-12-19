@@ -373,8 +373,56 @@
             }else{$this->SQLERROR();}
         }//AddMedia (admin)
 
+        ///////////////////////////////////////////////////////////////////////////////////
 
+        public function addReview($review, $rating, $USER_ID, $MEDIA_ID){
+            if(!isset($rating) || !isset($USER_ID) || !isset($MEDIA_ID)){
+                $this->BadReq();
+            }
 
+            if(isset($rating) && isset($review)){
+                $Query = "INSERT INTO REVIEWS (USER_ID, MEDIA_ID, Rating, Review) VALUES (?, ?, ?, ?)";
+                $SQLQuery = $this->db->prepare($Query);
+                if($SQLQuery){
+                    $SQLQuery->bind_param('iiis',$USER_ID,$MEDIA_ID,$rating,$review);
+                }else{$this->SQLERROR();}
+            }else{
+                $Query = "INSERT INTO REVIEWS (USER_ID, MEDIA_ID, Rating) VALUES (?, ?, ?)";
+                $SQLQuery = $this->db->prepare($Query);
+                if($SQLQuery){
+                    $SQLQuery->bind_param('iii',$USER_ID,$MEDIA_ID,$rating);
+                }else{$this->SQLERROR();}
+            }
+
+            $didit = $SQLQuery->execute();
+            if($didit){
+                header("HTTP/1.1 201 Created");
+                $data = ["status"=>"201","message"=>"Successfully added Review"];
+                echo json_encode($data);
+            }else{$this->SQLEXECUTEEROR();}
+        }
+
+        public function getReview($MEDIA_ID){
+            if(!isset($MEDIA_ID)){
+                $this->BadReq();
+            }
+
+            $Query = "SELECT Rating, Review, Name, Surname, DatePublished FROM Reviews INNER JOIN USER ON Reviews.USER_ID = USER.USER_ID WHERE Reviews.MEDIA_ID = ?";
+            $SQLQuery = $this->db->prepare($Query);
+            if($SQLQuery){
+                $SQLQuery->bind_param("I",$MEDIA_ID);
+                $didit = $SQLQuery->execute();
+                if($didit){
+                    $res = $SQLQuery->get_result();
+                    while($row = $res->fetch_assoc()){
+                        $reviews[] = $row;
+                    }
+                    header("HTTP/1.1 200 OK");
+                    $data = ["status"=> "200","data"=> $reviews];
+                    echo json_encode($data);
+                }else{$this->SQLEXECUTEEROR();}
+            }else{$this->SQLERROR();}
+        }
 
 
     }
@@ -428,6 +476,16 @@
 
         if(isset($input_data) && $input_data['type'] == "AddMedia"){
             $api->AddMedia($input_data['title'],$input_data['Description'],$input_data['Genre'],$input_data['Age-Restriction'],$input_data['Cast'],$input_data['Director'],$input_data['Producer'],$input_data['Poster'],$input_data['ReleaseDate'],$input_data['rating']);
+        }
+
+        //////////////////////////////////////////////////////////////////////////
+
+        if(isset($input_data) && $input_data['type'] == 'AddReview'){
+            $api->addReview($input_data['review'],$input_data['rating'],$input_data['USER_ID'],$input_data['MEDIA_ID']);
+        }
+
+        if(isset($input_data) && $input_data['type'] == 'GetReviews'){
+            $api->getReview($input_data['MEDIA_ID']);
         }
 
     }//different endpoints for POST
