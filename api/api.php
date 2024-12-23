@@ -410,7 +410,7 @@
             $Query = "SELECT Rating, Review, Name, Surname, DatePublished FROM Reviews INNER JOIN USER ON Reviews.USER_ID = USER.USER_ID WHERE Reviews.MEDIA_ID = ?";
             $SQLQuery = $this->db->prepare($Query);
             if($SQLQuery){
-                $SQLQuery->bind_param("I",$MEDIA_ID);
+                $SQLQuery->bind_param("i",$MEDIA_ID);
                 $didit = $SQLQuery->execute();
                 if($didit){
                     $res = $SQLQuery->get_result();
