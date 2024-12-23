@@ -26,16 +26,6 @@
                 <label for="DOB">Date Of Birth</label>
                 <input type="date" name="DOB" id="DOB">
                 <br>
-                <label for="region">Region</label>
-                <select name="region" id="region">
-                    <option>Africa</option>
-                    <option>North America</option>
-                    <option>South America</option>
-                    <option>Europe</option>
-                    <option>Asia</option>
-                    <option>Australia</option>
-                </select>
-                <br>
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email">
                 <br>
@@ -45,9 +35,10 @@
                 <label for="confirmpassword">Confirm Password</label>
                 <input type="password" name="confirmpassword" id="confirmpassword">
                 <br>
-                <button id="register">Register</button>
+                <button id="register" type="button">Register</button>
             </form>
         </div>
+        <label id="missingDetails"></label>
         <label id="BackToLogin">Back to Login</label>
         <script src="register.js"></script>
     </body>

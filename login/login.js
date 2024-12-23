@@ -14,7 +14,30 @@ document.getElementById("loginButton").addEventListener("click",()=>{
         document.getElementById("invalidInput").innerText = "Invalid Password";
     }
 
+    if(email != "" && password != ""){
+        var LoginXHR = new XMLHttpRequest();
+        LoginXHR.onreadystatechange = function(){
+            if(LoginXHR.readyState == 4){
+                if(LoginXHR.status == 200){
+                    var details = JSON.parse(this.responseText);
+                    console.log(details);
+                }
 
-    window.location.href = "../home/home.html";
-    alert("Welcome ____!");
+                if(LoginXHR.status == 409){
+                    var details = JSON.parse(this.responseText);
+                    document.getElementById("invalidInput").innerText = details.message;
+                }
+            }
+        }//ajax
+
+        const reqBody = JSON.stringify({
+            "type" : "Login",
+            "email": email,
+            "password" : password
+        });
+        LoginXHR.open("POST","http://localhost/HOOP/api/api.php",true);
+        LoginXHR.send(reqBody);
+
+    }//!null
+
 });

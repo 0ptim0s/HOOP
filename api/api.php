@@ -100,7 +100,7 @@
             
 
             if(!$this->alreadyExists($email, $hashedPassword)){
-                header("HTTP/1.1 409 OK");
+                header("HTTP/1.1 409 Conflict");
                 $data = ["status"=>"409", "message"=>"Incorrect details"];
                 echo json_encode($data);
             }//needs to register

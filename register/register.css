@@ -56,3 +56,7 @@ h1{
     from{top: 100%;}
     to{top: 50%;}
 }
+
+#missingDetails{
+    color: red;
+}
